@@ -1,0 +1,10 @@
+{
+  "name": "kii-contracts-demo",
+  "version": "1.0.0",
+  "description": "Demo repository for deploying and interacting with contracts on KiiChain",
+  "author": "Th3Horizon",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2"
+  }
+}
