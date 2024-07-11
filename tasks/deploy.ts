@@ -1,10 +1,18 @@
+// Deploy one of the available contracts at the kiichain network.
+// NOTE: Currently only supports the BasicToken contract.
+// It will be improved as more contracts are added.
+
 import { task } from "hardhat/config";
-import { getPrivateKey, getProviderURL } from "../src/utils";
+import {
+    getPrivateKey, getProviderURL,
+    writeJsonFile
+} from "../src/utils";
 
 task(
     "deploy",
     "Deploy the contract",
     async (_, hre) => {
+        // Initialize the wallet and provider
         const pk = getPrivateKey();
         const provider = new hre.ethers.JsonRpcProvider(
             getProviderURL(hre.network.name)
@@ -13,7 +21,7 @@ task(
             pk,
             provider
         );
-
+        // Execute the deployment
         console.log("Deploying contracts...\n");
         const tokenFactory = await hre.ethers.getContractFactory(
             "BasicToken",
@@ -24,18 +32,24 @@ task(
             "TTest",
             hre.ethers.parseEther("100")
         );
-
         await token.waitForDeployment();
-
+        // Log the results
+        const tokenAddress = await token.getAddress();
         const txReceipt = token.deploymentTransaction();
-
+        const txHash = txReceipt?.hash || "";
+        const scannerUrl = "https://app.kiichain.io/kiichain/tx"
         console.log(
-            `Transaction hash: ${txReceipt?.hash}\n`,
-            `Block number: ${txReceipt?.blockNumber}\n`
+            `Token Address: ${tokenAddress}\n`
         );
-
-        console.log(
-            `Token Address: ${await token.getAddress()}`
+        if (txHash !== "") {
+            console.log(
+                `Review the transaction @ ${scannerUrl}/${txHash}`
+            )
+        };
+        // Store the address in a JSON file
+        writeJsonFile(
+            [tokenAddress],
+            "addresses/basictoken.json"
         );
     }
 );

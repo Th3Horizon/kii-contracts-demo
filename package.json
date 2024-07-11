@@ -9,6 +9,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.2",
+    "app-root-path": "^3.1.0",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.1"
   },
@@ -18,7 +19,7 @@
     "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
     "@typechain/ethers-v6": "^0.5.1",
     "@typechain/hardhat": "^9.1.0",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.10",
     "hardhat": "^2.22.5",
     "ts-node": "^10.9.2",
     "typechain": "^8.3.2",

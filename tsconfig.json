@@ -7,11 +7,10 @@
       "strict": true,
       "skipLibCheck": true,
       "outDir": "dist",
-      "rootDirs": ["./scripts", "./tasks", "./tests"],
+      "rootDirs": ["./src", "./tasks", "./tests"],
       "baseUrl": "."
     },
     "exclude": ["dist", "node_modules"],
-    "include": ["./scripts/**/*", "./tasks/**/*", "./tests/**/*", "./typechain/**/*"],
-    "files": ["./hardhat.config.ts", "scripts/index.ts"]
+    "include": ["./src/**/*", "./tasks/**/*", "./tests/**/*", "./typechain/**/*"],
+    "files": ["./hardhat.config.ts", "src/index.ts"]
 }
-
